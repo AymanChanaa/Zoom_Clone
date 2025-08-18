@@ -46,14 +46,20 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-sky-1: #c9ddff;
+  --color-orange-1: #ff742e;
+  --color-blue-1: #0e78f9;
+  --color-purple-1: #830ef9;
+  --color-yellow-1: #f9a90e;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --background-image-hero: url("/images/hero-background.png");
 }
 
 :root {
-  --blue-1: #0E78F9;
+  --blue-1: #0e78f9;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -89,7 +95,7 @@
 }
 
 .dark {
-  --dark-1: #1C1F2E;
+  --dark-1: #1c1f2e;
   --dark-2: #161925;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -131,4 +137,39 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ==== clerk class override ===== */
+
+.cl-userButtonPopoverActionButtonIcon {
+  color: white;
+}
+
+.cl-logoBox {
+  height: 40px;
+}
+.cl-dividerLine {
+  background: #252a41;
+  height: 2px;
+}
+
+.cl-socialButtonsIconButton {
+  border: 3px solid #565761;
+}
+
+.cl-internal-wkkub3 {
+  color: white;
+}
+.cl-userButtonPopoverActionButton {
+  color: white;
+}
+
+.cl-providerIcon__github {
+  filter: invert(1);
 }
