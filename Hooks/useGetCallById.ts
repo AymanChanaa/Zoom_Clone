@@ -9,15 +9,21 @@ export const useGetCallById = (id: string | string[]) => {
 
   useEffect(() => {
     if (!client) return;
-    const loadCall = async () => {
-      const { calls } = await client.queryCalls({
-        filter_conditions: {
-          id,
-        },
-      });
 
-      if (calls.length > 0) setCall(calls[0]);
-      setIsCallLoading(false);
+    const loadCall = async () => {
+      try {
+        const { calls } = await client.queryCalls({
+          filter_conditions: {
+            id,
+          },
+        });
+
+        if (calls.length > 0) setCall(calls[0]);
+        setIsCallLoading(false);
+      } catch (error) {
+        console.error(error);
+        setIsCallLoading(false);
+      }
     };
 
     loadCall();
