@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import {
@@ -52,8 +52,7 @@ const MobileNav = () => {
             <SheetClose asChild>
               <section className="flex h-full flex-col gap-6 pt-8 text-white">
                 {sidebarLinks.map((link) => {
-                  const isActive =
-                    pathname === link.route;
+                  const isActive = pathname === link.route;
                   return (
                     <SheetClose asChild key={link.route}>
                       <Link
@@ -72,9 +71,7 @@ const MobileNav = () => {
                           width={20}
                           height={20}
                         />
-                        <p className="font-semibold">
-                          {link.label}
-                        </p>
+                        <p className="font-semibold">{link.label}</p>
                       </Link>
                     </SheetClose>
                   );

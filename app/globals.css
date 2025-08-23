@@ -47,11 +47,15 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --color-sky-1: #c9ddff;
+  --color-sky-2: #ecf0ff;
   --color-orange-1: #ff742e;
   --color-blue-1: #0e78f9;
   --color-purple-1: #830ef9;
   --color-yellow-1: #f9a90e;
   --color-dark-1: #1c1f2e;
+  --color-dark-2: #161925;
+  --color-dark-3: #252a41;
+  --color-dark-4: #1e2757;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
