@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 "use client";
 import { useGetCalls } from "@/Hooks/useGetCalls";
 import { Call, CallRecording } from "@stream-io/video-react-sdk";
@@ -57,7 +55,7 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
         toast("Try again later", {
           action: {
             label: "Close",
-            onClick: () => console.log("Close toast"),
+            onClick: () => console.log("Close toast", error),
           },
         });
       }
@@ -76,7 +74,11 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
       {calls && calls.length > 0 ? (
         calls.map((meeting: Call | CallRecording) => (
           <MeetingCard
-            key={(meeting as Call).id}
+            key={
+              (meeting as Call).id ||
+              (meeting as CallRecording).filename ||
+              `${(meeting as CallRecording).start_time}-${Math.random()}`
+            }
             icon={
               type === "ended"
                 ? "/icons/previous.svg"
@@ -85,25 +87,27 @@ const CallList = ({ type }: { type: "ended" | "upcoming" | "recordings" }) => {
                 : "/icons/recordings.svg"
             }
             title={
-              meeting.state?.custom?.description?.substring(0, 26) ||
-              meeting?.filename?.substring(0, 20) ||
+              (meeting as Call).state?.custom?.description?.substring(0, 26) ||
+              (meeting as CallRecording)?.filename?.substring(0, 20) ||
               "Personal Meeting"
             }
             date={
-              meeting.state?.startsAt.toLocaleString() ||
-              meeting.start_time.toLocaleString()
+              (meeting as Call).state?.startsAt?.toLocaleString() ||
+              (meeting as CallRecording).start_time.toLocaleString()
             }
             isPreviousMeeting={type === "ended"}
             buttonIcon1={type === "recordings" ? "/icons/play.svg" : undefined}
             handleClick={
               type === "recordings"
-                ? () => router.push(`${meeting.url}`)
-                : () => router.push(`/meeting/${meeting.id}`)
+                ? () => router.push(`${(meeting as CallRecording).url}`)
+                : () => router.push(`/meeting/${(meeting as Call).id}`)
             }
             link={
               type === "recordings"
-                ? meeting.url
-                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${meeting.id}`
+                ? (meeting as CallRecording).url
+                : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${
+                    (meeting as Call).id
+                  }`
             }
             buttonText={type === "recordings" ? "Play" : "Start"}
           />
