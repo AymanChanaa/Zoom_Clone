@@ -6,7 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.25.4",
@@ -33,6 +37,7 @@
     "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^20",
     "@types/react": "^18.2.44",
+    "@types/react-dom": "^18.0.0",
     "@types/react-datepicker": "^7.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
